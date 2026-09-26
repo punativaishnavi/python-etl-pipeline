@@ -1,0 +1,29 @@
+pipeline:
+  name: "ecommerce-etl"
+  run_mode: "full"        # full | incremental
+  log_level: "INFO"
+
+extract:
+  source: "sample"        # sample | api
+  sample_path: "data/sample/products_sample.json"
+  api_url: "https://dummyjson.com/products"
+  limit: 100
+  timeout_seconds: 30
+  retries: 3
+  raw_snapshot_dir: "data/raw"
+
+transform:
+  min_price: 0.01
+  required_columns: ["id", "title", "price", "category"]
+
+validate:
+  fail_on_error: false
+  quarantine_path: "data/quarantine/rejected_rows.csv"
+
+load:
+  database_path: "data/warehouse.db"
+  products_table: "products"
+  summary_table: "category_summary"
+
+state:
+  path: "data/state/last_run.json"

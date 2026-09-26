@@ -1,0 +1,18 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Runtime outputs (regenerated every run)
+data/warehouse.db
+data/raw/
+data/quarantine/
+data/state/
+*.log
+
+# OS / editor noise
+.DS_Store
+.idea/
+.vscode/
